@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.DeliveryMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.Delivery">
+    <id column="delivery_id" jdbcType="VARCHAR" property="deliveryId" />
+    <result column="start_city" jdbcType="VARCHAR" property="startCity" />
+    <result column="end_city" jdbcType="VARCHAR" property="endCity" />
+    <result column="mid_city" jdbcType="VARCHAR" property="midCity" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="make_date" jdbcType="TIMESTAMP" property="makeDate" />
+    <result column="deliver_com" jdbcType="VARCHAR" property="deliverCom" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from delivery
+    where delivery_id = #{deliveryId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zmc.entity.Delivery">
+    insert into delivery (delivery_id, start_city, end_city, 
+      mid_city, status, make_date, 
+      deliver_com)
+    values (#{deliveryId,jdbcType=VARCHAR}, #{startCity,jdbcType=VARCHAR}, #{endCity,jdbcType=VARCHAR}, 
+      #{midCity,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{makeDate,jdbcType=TIMESTAMP}, 
+      #{deliverCom,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zmc.entity.Delivery">
+    update delivery
+    set start_city = #{startCity,jdbcType=VARCHAR},
+      end_city = #{endCity,jdbcType=VARCHAR},
+      mid_city = #{midCity,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      make_date = #{makeDate,jdbcType=TIMESTAMP},
+      deliver_com = #{deliverCom,jdbcType=VARCHAR}
+    where delivery_id = #{deliveryId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select delivery_id, start_city, end_city, mid_city, status, make_date, deliver_com
+    from delivery
+    where delivery_id = #{deliveryId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select delivery_id, start_city, end_city, mid_city, status, make_date, deliver_com
+    from delivery
+  </select>
+</mapper>

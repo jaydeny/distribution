@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.OrdersMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.Orders">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="order_type" jdbcType="INTEGER" property="orderType" />
+    <result column="delivery_id" jdbcType="VARCHAR" property="deliveryId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_weight" jdbcType="INTEGER" property="goodsWeight" />
+    <result column="post_name" jdbcType="VARCHAR" property="postName" />
+    <result column="post_addr" jdbcType="VARCHAR" property="postAddr" />
+    <result column="post_tel" jdbcType="VARCHAR" property="postTel" />
+    <result column="get_name" jdbcType="VARCHAR" property="getName" />
+    <result column="get_tel" jdbcType="VARCHAR" property="getTel" />
+    <result column="get_addr" jdbcType="VARCHAR" property="getAddr" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="start_city" jdbcType="VARCHAR" property="startCity" />
+    <result column="mid_city" jdbcType="VARCHAR" property="midCity" />
+    <result column="end_city" jdbcType="VARCHAR" property="endCity" />
+    <result column="transt_price" jdbcType="DECIMAL" property="transtPrice" />
+    <result column="distribut_price" jdbcType="DECIMAL" property="distributPrice" />
+    <result column="total_price" jdbcType="VARCHAR" property="totalPrice" />
+    <result column="car_id" jdbcType="VARCHAR" property="carId" />
+    <result column="order_com" jdbcType="VARCHAR" property="orderCom" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from orders
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zmc.entity.Orders">
+    insert into orders (order_id, order_type, delivery_id, 
+      goods_name, goods_weight, post_name, 
+      post_addr, post_tel, get_name, 
+      get_tel, get_addr, order_status, 
+      start_city, mid_city, end_city, 
+      transt_price, distribut_price, total_price, 
+      car_id, order_com)
+    values (#{orderId,jdbcType=VARCHAR}, #{orderType,jdbcType=INTEGER}, #{deliveryId,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsWeight,jdbcType=INTEGER}, #{postName,jdbcType=VARCHAR}, 
+      #{postAddr,jdbcType=VARCHAR}, #{postTel,jdbcType=VARCHAR}, #{getName,jdbcType=VARCHAR}, 
+      #{getTel,jdbcType=VARCHAR}, #{getAddr,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, 
+      #{startCity,jdbcType=VARCHAR}, #{midCity,jdbcType=VARCHAR}, #{endCity,jdbcType=VARCHAR}, 
+      #{transtPrice,jdbcType=DECIMAL}, #{distributPrice,jdbcType=DECIMAL}, #{totalPrice,jdbcType=VARCHAR}, 
+      #{carId,jdbcType=VARCHAR}, #{orderCom,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zmc.entity.Orders">
+    update orders
+    set order_type = #{orderType,jdbcType=INTEGER},
+      delivery_id = #{deliveryId,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_weight = #{goodsWeight,jdbcType=INTEGER},
+      post_name = #{postName,jdbcType=VARCHAR},
+      post_addr = #{postAddr,jdbcType=VARCHAR},
+      post_tel = #{postTel,jdbcType=VARCHAR},
+      get_name = #{getName,jdbcType=VARCHAR},
+      get_tel = #{getTel,jdbcType=VARCHAR},
+      get_addr = #{getAddr,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      start_city = #{startCity,jdbcType=VARCHAR},
+      mid_city = #{midCity,jdbcType=VARCHAR},
+      end_city = #{endCity,jdbcType=VARCHAR},
+      transt_price = #{transtPrice,jdbcType=DECIMAL},
+      distribut_price = #{distributPrice,jdbcType=DECIMAL},
+      total_price = #{totalPrice,jdbcType=VARCHAR},
+      car_id = #{carId,jdbcType=VARCHAR},
+      order_com = #{orderCom,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select order_id, order_type, delivery_id, goods_name, goods_weight, post_name, post_addr, 
+    post_tel, get_name, get_tel, get_addr, order_status, start_city, mid_city, end_city, 
+    transt_price, distribut_price, total_price, car_id, order_com
+    from orders
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select order_id, order_type, delivery_id, goods_name, goods_weight, post_name, post_addr, 
+    post_tel, get_name, get_tel, get_addr, order_status, start_city, mid_city, end_city, 
+    transt_price, distribut_price, total_price, car_id, order_com
+    from orders
+  </select>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.ClientMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.Client">
+    <id column="client_id" jdbcType="VARCHAR" property="clientId" />
+    <result column="client_name" jdbcType="VARCHAR" property="clientName" />
+    <result column="client_sex" jdbcType="INTEGER" property="clientSex" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="client_pwd" jdbcType="VARCHAR" property="clientPwd" />
+    <result column="client_tel" jdbcType="VARCHAR" property="clientTel" />
+    <result column="client_bir" jdbcType="TIMESTAMP" property="clientBir" />
+    <result column="client_addr" jdbcType="VARCHAR" property="clientAddr" />
+    <result column="client_com" jdbcType="VARCHAR" property="clientCom" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from client
+    where client_id = #{clientId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zmc.entity.Client">
+    insert into client (client_id, client_name, client_sex, 
+      role_id, client_pwd, client_tel, 
+      client_bir, client_addr, client_com
+      )
+    values (#{clientId,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, #{clientSex,jdbcType=INTEGER}, 
+      #{roleId,jdbcType=VARCHAR}, #{clientPwd,jdbcType=VARCHAR}, #{clientTel,jdbcType=VARCHAR}, 
+      #{clientBir,jdbcType=TIMESTAMP}, #{clientAddr,jdbcType=VARCHAR}, #{clientCom,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zmc.entity.Client">
+    update client
+    set client_name = #{clientName,jdbcType=VARCHAR},
+      client_sex = #{clientSex,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=VARCHAR},
+      client_pwd = #{clientPwd,jdbcType=VARCHAR},
+      client_tel = #{clientTel,jdbcType=VARCHAR},
+      client_bir = #{clientBir,jdbcType=TIMESTAMP},
+      client_addr = #{clientAddr,jdbcType=VARCHAR},
+      client_com = #{clientCom,jdbcType=VARCHAR}
+    where client_id = #{clientId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select client_id, client_name, client_sex, role_id, client_pwd, client_tel, client_bir, 
+    client_addr, client_com
+    from client
+    where client_id = #{clientId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select client_id, client_name, client_sex, role_id, client_pwd, client_tel, client_bir, 
+    client_addr, client_com
+    from client
+  </select>
+</mapper>

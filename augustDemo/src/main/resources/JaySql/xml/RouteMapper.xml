@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.RouteMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.Route">
+    <id column="route_id" jdbcType="VARCHAR" property="routeId" />
+    <result column="route_name" jdbcType="VARCHAR" property="routeName" />
+    <result column="start_pro_id" jdbcType="VARCHAR" property="startProId" />
+    <result column="start_city_id" jdbcType="VARCHAR" property="startCityId" />
+    <result column="mid_pro_id" jdbcType="VARCHAR" property="midProId" />
+    <result column="mid_city_id" jdbcType="VARCHAR" property="midCityId" />
+    <result column="end_pro_id" jdbcType="VARCHAR" property="endProId" />
+    <result column="end_city_id" jdbcType="VARCHAR" property="endCityId" />
+    <result column="transt_price" jdbcType="DECIMAL" property="transtPrice" />
+    <result column="route_com" jdbcType="VARCHAR" property="routeCom" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from route
+    where route_id = #{routeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zmc.entity.Route">
+    insert into route (route_id, route_name, start_pro_id, 
+      start_city_id, mid_pro_id, mid_city_id, 
+      end_pro_id, end_city_id, transt_price, 
+      route_com)
+    values (#{routeId,jdbcType=VARCHAR}, #{routeName,jdbcType=VARCHAR}, #{startProId,jdbcType=VARCHAR}, 
+      #{startCityId,jdbcType=VARCHAR}, #{midProId,jdbcType=VARCHAR}, #{midCityId,jdbcType=VARCHAR}, 
+      #{endProId,jdbcType=VARCHAR}, #{endCityId,jdbcType=VARCHAR}, #{transtPrice,jdbcType=DECIMAL}, 
+      #{routeCom,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zmc.entity.Route">
+    update route
+    set route_name = #{routeName,jdbcType=VARCHAR},
+      start_pro_id = #{startProId,jdbcType=VARCHAR},
+      start_city_id = #{startCityId,jdbcType=VARCHAR},
+      mid_pro_id = #{midProId,jdbcType=VARCHAR},
+      mid_city_id = #{midCityId,jdbcType=VARCHAR},
+      end_pro_id = #{endProId,jdbcType=VARCHAR},
+      end_city_id = #{endCityId,jdbcType=VARCHAR},
+      transt_price = #{transtPrice,jdbcType=DECIMAL},
+      route_com = #{routeCom,jdbcType=VARCHAR}
+    where route_id = #{routeId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select route_id, route_name, start_pro_id, start_city_id, mid_pro_id, mid_city_id, 
+    end_pro_id, end_city_id, transt_price, route_com
+    from route
+    where route_id = #{routeId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select route_id, route_name, start_pro_id, start_city_id, mid_pro_id, mid_city_id, 
+    end_pro_id, end_city_id, transt_price, route_com
+    from route
+  </select>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.DistributionareaMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.Distributionarea">
+    <id column="dis_area_id" jdbcType="INTEGER" property="disAreaId" />
+    <result column="dis_area_name" jdbcType="VARCHAR" property="disAreaName" />
+    <result column="dis_price" jdbcType="DECIMAL" property="disPrice" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="dis_com" jdbcType="VARCHAR" property="disCom" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from distributionarea
+    where dis_area_id = #{disAreaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zmc.entity.Distributionarea">
+    insert into distributionarea (dis_area_id, dis_area_name, dis_price, 
+      city_id, dis_com)
+    values (#{disAreaId,jdbcType=INTEGER}, #{disAreaName,jdbcType=VARCHAR}, #{disPrice,jdbcType=DECIMAL}, 
+      #{cityId,jdbcType=VARCHAR}, #{disCom,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zmc.entity.Distributionarea">
+    update distributionarea
+    set dis_area_name = #{disAreaName,jdbcType=VARCHAR},
+      dis_price = #{disPrice,jdbcType=DECIMAL},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      dis_com = #{disCom,jdbcType=VARCHAR}
+    where dis_area_id = #{disAreaId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select dis_area_id, dis_area_name, dis_price, city_id, dis_com
+    from distributionarea
+    where dis_area_id = #{disAreaId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select dis_area_id, dis_area_name, dis_price, city_id, dis_com
+    from distributionarea
+  </select>
+</mapper>

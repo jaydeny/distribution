@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.InvoiceMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.Invoice">
+    <id column="invoice_id" jdbcType="INTEGER" property="invoiceId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="invoice_date" jdbcType="DATE" property="invoiceDate" />
+    <result column="billing_address" jdbcType="VARCHAR" property="billingAddress" />
+    <result column="billing_city" jdbcType="VARCHAR" property="billingCity" />
+    <result column="billing_state" jdbcType="VARCHAR" property="billingState" />
+    <result column="billing_country" jdbcType="VARCHAR" property="billingCountry" />
+    <result column="billing_postal_code" jdbcType="VARCHAR" property="billingPostalCode" />
+    <result column="total" jdbcType="INTEGER" property="total" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from invoice
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zmc.entity.Invoice">
+    insert into invoice (invoice_id, customer_id, invoice_date, 
+      billing_address, billing_city, billing_state, 
+      billing_country, billing_postal_code, total
+      )
+    values (#{invoiceId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{invoiceDate,jdbcType=DATE}, 
+      #{billingAddress,jdbcType=VARCHAR}, #{billingCity,jdbcType=VARCHAR}, #{billingState,jdbcType=VARCHAR}, 
+      #{billingCountry,jdbcType=VARCHAR}, #{billingPostalCode,jdbcType=VARCHAR}, #{total,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zmc.entity.Invoice">
+    update invoice
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      invoice_date = #{invoiceDate,jdbcType=DATE},
+      billing_address = #{billingAddress,jdbcType=VARCHAR},
+      billing_city = #{billingCity,jdbcType=VARCHAR},
+      billing_state = #{billingState,jdbcType=VARCHAR},
+      billing_country = #{billingCountry,jdbcType=VARCHAR},
+      billing_postal_code = #{billingPostalCode,jdbcType=VARCHAR},
+      total = #{total,jdbcType=INTEGER}
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select invoice_id, customer_id, invoice_date, billing_address, billing_city, billing_state, 
+    billing_country, billing_postal_code, total
+    from invoice
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select invoice_id, customer_id, invoice_date, billing_address, billing_city, billing_state, 
+    billing_country, billing_postal_code, total
+    from invoice
+  </select>
+</mapper>

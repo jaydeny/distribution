@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.CarMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.Car">
+    <id column="car_id" jdbcType="VARCHAR" property="carId" />
+    <result column="car_type" jdbcType="VARCHAR" property="carType" />
+    <result column="car_dimension" jdbcType="VARCHAR" property="carDimension" />
+    <result column="route_id" jdbcType="VARCHAR" property="routeId" />
+    <result column="car_bir" jdbcType="TIMESTAMP" property="carBir" />
+    <result column="buy_date" jdbcType="TIMESTAMP" property="buyDate" />
+    <result column="car_com" jdbcType="VARCHAR" property="carCom" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from car
+    where car_id = #{carId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zmc.entity.Car">
+    insert into car (car_id, car_type, car_dimension, 
+      route_id, car_bir, buy_date, 
+      car_com)
+    values (#{carId,jdbcType=VARCHAR}, #{carType,jdbcType=VARCHAR}, #{carDimension,jdbcType=VARCHAR}, 
+      #{routeId,jdbcType=VARCHAR}, #{carBir,jdbcType=TIMESTAMP}, #{buyDate,jdbcType=TIMESTAMP}, 
+      #{carCom,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zmc.entity.Car">
+    update car
+    set car_type = #{carType,jdbcType=VARCHAR},
+      car_dimension = #{carDimension,jdbcType=VARCHAR},
+      route_id = #{routeId,jdbcType=VARCHAR},
+      car_bir = #{carBir,jdbcType=TIMESTAMP},
+      buy_date = #{buyDate,jdbcType=TIMESTAMP},
+      car_com = #{carCom,jdbcType=VARCHAR}
+    where car_id = #{carId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select car_id, car_type, car_dimension, route_id, car_bir, buy_date, car_com
+    from car
+    where car_id = #{carId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select car_id, car_type, car_dimension, route_id, car_bir, buy_date, car_com
+    from car
+  </select>
+</mapper>

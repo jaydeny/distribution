@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.Customer">
+    <id column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="fisrt_name" jdbcType="VARCHAR" property="fisrtName" />
+    <result column="last_name" jdbcType="VARCHAR" property="lastName" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="postal_code" jdbcType="VARCHAR" property="postalCode" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="support_rpid" jdbcType="VARCHAR" property="supportRpid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customer
+    where customer_id = #{customerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zmc.entity.Customer">
+    insert into customer (customer_id, fisrt_name, last_name, 
+      company, address, city, 
+      state, country, postal_code, 
+      phone, fax, email, 
+      support_rpid)
+    values (#{customerId,jdbcType=INTEGER}, #{fisrtName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, 
+      #{company,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{supportRpid,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zmc.entity.Customer">
+    update customer
+    set fisrt_name = #{fisrtName,jdbcType=VARCHAR},
+      last_name = #{lastName,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      postal_code = #{postalCode,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      support_rpid = #{supportRpid,jdbcType=VARCHAR}
+    where customer_id = #{customerId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select customer_id, fisrt_name, last_name, company, address, city, state, country, 
+    postal_code, phone, fax, email, support_rpid
+    from customer
+    where customer_id = #{customerId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select customer_id, fisrt_name, last_name, company, address, city, state, country, 
+    postal_code, phone, fax, email, support_rpid
+    from customer
+  </select>
+</mapper>

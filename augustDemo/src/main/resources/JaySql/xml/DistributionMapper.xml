@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.DistributionMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.Distribution">
+    <id column="distribut_id" jdbcType="INTEGER" property="distributId" />
+    <result column="distribut_name" jdbcType="VARCHAR" property="distributName" />
+    <result column="pro_id" jdbcType="VARCHAR" property="proId" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="admin_id" jdbcType="VARCHAR" property="adminId" />
+    <result column="distribut_tel" jdbcType="VARCHAR" property="distributTel" />
+    <result column="distribut_addr" jdbcType="VARCHAR" property="distributAddr" />
+    <result column="distribut_com" jdbcType="VARCHAR" property="distributCom" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from distribution
+    where distribut_id = #{distributId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zmc.entity.Distribution">
+    insert into distribution (distribut_id, distribut_name, pro_id, 
+      city_id, admin_id, distribut_tel, 
+      distribut_addr, distribut_com)
+    values (#{distributId,jdbcType=INTEGER}, #{distributName,jdbcType=VARCHAR}, #{proId,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=VARCHAR}, #{adminId,jdbcType=VARCHAR}, #{distributTel,jdbcType=VARCHAR}, 
+      #{distributAddr,jdbcType=VARCHAR}, #{distributCom,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zmc.entity.Distribution">
+    update distribution
+    set distribut_name = #{distributName,jdbcType=VARCHAR},
+      pro_id = #{proId,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=VARCHAR},
+      distribut_tel = #{distributTel,jdbcType=VARCHAR},
+      distribut_addr = #{distributAddr,jdbcType=VARCHAR},
+      distribut_com = #{distributCom,jdbcType=VARCHAR}
+    where distribut_id = #{distributId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select distribut_id, distribut_name, pro_id, city_id, admin_id, distribut_tel, distribut_addr, 
+    distribut_com
+    from distribution
+    where distribut_id = #{distributId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select distribut_id, distribut_name, pro_id, city_id, admin_id, distribut_tel, distribut_addr, 
+    distribut_com
+    from distribution
+  </select>
+</mapper>

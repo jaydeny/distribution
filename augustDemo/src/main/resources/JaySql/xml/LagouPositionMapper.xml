@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.LagouPositionMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.LagouPosition">
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="field" jdbcType="VARCHAR" property="field" />
+    <result column="salary_min" jdbcType="DOUBLE" property="salaryMin" />
+    <result column="salary_max" jdbcType="DOUBLE" property="salaryMax" />
+    <result column="workyear" jdbcType="VARCHAR" property="workyear" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="ptype" jdbcType="VARCHAR" property="ptype" />
+    <result column="pnature" jdbcType="VARCHAR" property="pnature" />
+    <result column="advantage" jdbcType="VARCHAR" property="advantage" />
+    <result column="published_at" jdbcType="TIMESTAMP" property="publishedAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_short_name" jdbcType="VARCHAR" property="companyShortName" />
+    <result column="company_full_name" jdbcType="VARCHAR" property="companyFullName" />
+    <result column="company_size" jdbcType="VARCHAR" property="companySize" />
+    <result column="financestage" jdbcType="VARCHAR" property="financestage" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zmc.entity.LagouPosition">
+    insert into lagou_position (pid, city, district, 
+      position, field, salary_min, 
+      salary_max, workyear, education, 
+      ptype, pnature, advantage, 
+      published_at, updated_at, company_id, 
+      company_short_name, company_full_name, company_size, 
+      financestage)
+    values (#{pid,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{field,jdbcType=VARCHAR}, #{salaryMin,jdbcType=DOUBLE}, 
+      #{salaryMax,jdbcType=DOUBLE}, #{workyear,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{ptype,jdbcType=VARCHAR}, #{pnature,jdbcType=VARCHAR}, #{advantage,jdbcType=VARCHAR}, 
+      #{publishedAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{companyId,jdbcType=INTEGER}, 
+      #{companyShortName,jdbcType=VARCHAR}, #{companyFullName,jdbcType=VARCHAR}, #{companySize,jdbcType=VARCHAR}, 
+      #{financestage,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select pid, city, district, position, field, salary_min, salary_max, workyear, education, 
+    ptype, pnature, advantage, published_at, updated_at, company_id, company_short_name, 
+    company_full_name, company_size, financestage
+    from lagou_position
+  </select>
+</mapper>

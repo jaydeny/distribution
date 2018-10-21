@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.dao.AdminMapper">
+  <resultMap id="BaseResultMap" type="com.zmc.entity.Admin">
+    <id column="admin_id" jdbcType="VARCHAR" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_sex" jdbcType="INTEGER" property="adminSex" />
+    <result column="admin_status" jdbcType="INTEGER" property="adminStatus" />
+    <result column="admin_city" jdbcType="VARCHAR" property="adminCity" />
+    <result column="admin_addr" jdbcType="VARCHAR" property="adminAddr" />
+    <result column="admin_pwd" jdbcType="VARCHAR" property="adminPwd" />
+    <result column="admin_tel" jdbcType="VARCHAR" property="adminTel" />
+    <result column="admin_com" jdbcType="VARCHAR" property="adminCom" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from admin
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zmc.entity.Admin">
+    insert into admin (admin_id, admin_name, admin_sex, 
+      admin_status, admin_city, admin_addr, 
+      admin_pwd, admin_tel, admin_com, 
+      role_id)
+    values (#{adminId,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{adminSex,jdbcType=INTEGER}, 
+      #{adminStatus,jdbcType=INTEGER}, #{adminCity,jdbcType=VARCHAR}, #{adminAddr,jdbcType=VARCHAR}, 
+      #{adminPwd,jdbcType=VARCHAR}, #{adminTel,jdbcType=VARCHAR}, #{adminCom,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zmc.entity.Admin">
+    update admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_sex = #{adminSex,jdbcType=INTEGER},
+      admin_status = #{adminStatus,jdbcType=INTEGER},
+      admin_city = #{adminCity,jdbcType=VARCHAR},
+      admin_addr = #{adminAddr,jdbcType=VARCHAR},
+      admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      admin_tel = #{adminTel,jdbcType=VARCHAR},
+      admin_com = #{adminCom,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR}
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select admin_id, admin_name, admin_sex, admin_status, admin_city, admin_addr, admin_pwd, 
+    admin_tel, admin_com, role_id
+    from admin
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select admin_id, admin_name, admin_sex, admin_status, admin_city, admin_addr, admin_pwd, 
+    admin_tel, admin_com, role_id
+    from admin
+  </select>
+</mapper>
